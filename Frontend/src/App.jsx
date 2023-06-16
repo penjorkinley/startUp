@@ -8,8 +8,8 @@ import Services from "./pages/Services"
 import Programs from "./pages/Programs"
 import StartUp from "./pages/StartUp"
 import Testmonial from "./pages/Testmonial"
-import Login from "./Auth/Login"
-import Logout from "./Auth/logout"
+import Signin from "./Auth/Signin"
+import Signup from "./Auth/Signup"
 import Home from "./pages/Dashboard/Home"
 import Event from "./pages/Dashboard/Event"
 import User from "./pages/Dashboard/User"
@@ -43,8 +43,8 @@ function App() {
               <Route path="program" element={<Programs />}/>
               <Route path="startup" element={<StartUp />}/>
               <Route path="testimonial" element={<Testmonial />}/>
-              <Route path="login" element={<Login />}/>
-              <Route path="logout" element={<Logout />}/>
+              <Route path="signin" element={<Signin />}/>
+              <Route path="signup" element={<Signup />}/>
             </Route>
           </Routes>
         </Router>

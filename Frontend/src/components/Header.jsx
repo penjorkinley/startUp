@@ -19,10 +19,10 @@ function Header() {
       </nav>
       <div className="Register">
         <button className="text-white bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded">
-          <Link to="/login">Sign In</Link>
+          <Link to="/signin">Sign In</Link>
         </button>
         <button className="text-white bg-green-500 hover:bg-green-600 py-2 px-4 rounded">
-          <Link to="/logout">Sign up</Link>
+          <Link to="/signup">Sign up</Link>
         </button>
       </div>
 </header>
