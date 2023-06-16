@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import mentorModel from "./models/mentorRegis.js";
+import jwt from "jsonwebtoken"
 
 dotenv.config();
 
@@ -22,8 +23,7 @@ db.once("open", () => {
   console.log("Connected to MongoDB");
 });
 
-//routes
-app.get("/postMentors", async (req, res) => {
+app.get("/getMentors", async (req, res) => {
   try {
     const result = await mentorModel.find();
     res.json(result);
@@ -32,7 +32,31 @@ app.get("/postMentors", async (req, res) => {
   }
 });
 
-//extra
+// Endpoint for user authentication
+app.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const user = await UserModel.findOne({ username });
+
+    if (!user) {
+      return res.json({ message: "User Doesn't Exist!" });
+    }
+
+    const isPasswordValid = await user.comparePassword(password);
+
+    if (!isPasswordValid) {
+      return res.json({ message: "Username or Password Is Incorrect!" });
+    }
+
+    const token = jwt.sign({ id: user._id }, "secret");
+    res.json({ token, userID: user._id });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+//Server
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
