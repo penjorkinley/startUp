@@ -25,7 +25,7 @@ db.once("open", () => {
 
 app.get("/getMentors", async (req, res) => {
   try {
-    const result = await mentorModel.find({ name: "John Doe" });
+    const result = await mentorModel.find();
     res.json(result);
   } catch (err) {
     res.json(err);

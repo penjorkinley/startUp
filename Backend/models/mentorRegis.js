@@ -45,6 +45,6 @@ const mentorSchema = new mongoose.Schema({
   },
 });
 
-const mentorModel = mongoose.model("mentorRegistration_tbl", mentorSchema);
+const mentorModel = mongoose.model("users", mentorSchema);
 
 export default mentorModel;
