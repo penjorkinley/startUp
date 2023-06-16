@@ -1,12 +1,16 @@
 import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
-import mentorModel from "./models/mentorRegis.js";
+import mentorModel from "./models/UserModel.js";
 import jwt from "jsonwebtoken"
+import UserModel from "./models/UserModel.js";
 
 dotenv.config();
 
 const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 mongoose.connect(
   "mongodb+srv://startup2023:$heerioeD16@cluster0.z32x289.mongodb.net/startup?retryWrites=true&w=majority",
