@@ -1,7 +1,16 @@
+import { Link } from "react-router-dom"
 
 function Header() {
   return (
-    <div>Header</div>
+    <header>
+      <nav>
+        <Link to="."></Link>
+        <Link to=""></Link>
+        <Link to=""></Link>
+        <Link to=""></Link>
+        <Link to=""></Link>
+      </nav>
+    </header>
   )
 }
 
