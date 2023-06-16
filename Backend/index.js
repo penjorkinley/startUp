@@ -34,9 +34,10 @@ app.get("/getMentors", async (req, res) => {
 
 // Endpoint for user authentication
 app.post("/login", async (req, res) => {
-  const { username, password } = req.body;
+  console.log(req.body)
+  const { name, password } = req.body;
   try {
-    const user = await UserModel.findOne({ username });
+    const user = await UserModel.findOne({ name });
 
     if (!user) {
       return res.json({ message: "User Doesn't Exist!" });
