@@ -2,9 +2,9 @@ import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import mentorModel from "./models/UserModel.js";
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 import UserModel from "./models/UserModel.js";
-import bcrypt from "bcrypt"
+import bcrypt from "bcrypt";
 
 dotenv.config();
 
@@ -27,13 +27,38 @@ db.on("error", (error) => {
 db.once("open", () => {
   console.log("Connected to MongoDB");
 });
+//routes
 
-app.get("/getMentors", async (req, res) => {
+// Endpoint for user sign-up
+app.post("/signup", async (req, res) => {
+  const { name, CID, email, gender, password, role, expertise, phoneNo } =
+    req.body;
   try {
-    const result = await mentorModel.find();
-    res.json(result);
-  } catch (err) {
-    res.json(err);
+    const user = await UserModel.findOne({ email });
+
+    if (user) {
+      return res.json({ message: "User Already Exists!" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = new UserModel({
+      name,
+      CID,
+      email,
+      gender,
+      password: hashedPassword,
+      role,
+      expertise,
+      phoneNo,
+    });
+    console.log(newUser);
+    await newUser.save(); // Save the newUser object to the database
+
+    res.json({ message: "User Created Successfully!" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
