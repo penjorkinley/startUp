@@ -15,6 +15,7 @@ import Event from "./pages/Dashboard/Event"
 import User from "./pages/Dashboard/User"
 import Settings from "./pages/Dashboard/Settings"
 import Help from "./pages/Dashboard/Help"
+import IncubeRegister from "./components/Pages/IncubeRegister"
 import "./index.css"
 import { StartContextProvider } from "./Context/StartContext"
 
@@ -40,6 +41,7 @@ function App() {
               </Route>
               <Route path="about" element={<AboutUs />}/>
               <Route path="service" element={<Services />}/>
+              <Route path="/incube" element={<IncubeRegister />}/>
               <Route path="program" element={<Programs />}/>
               <Route path="startup" element={<StartUp />}/>
               <Route path="testimonial" element={<Testmonial />}/>
