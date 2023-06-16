@@ -4,6 +4,8 @@ import mongoose from "mongoose";
 import mentorModel from "./models/UserModel.js";
 import jwt from "jsonwebtoken";
 import UserModel from "./models/UserModel.js";
+import IncubeRegisterModel from "./models/IncubateModel.js";
+
 import bcrypt from "bcrypt";
 
 dotenv.config();
@@ -80,6 +82,41 @@ app.post("/login", async (req, res) => {
 
     const token = jwt.sign({ id: user._id }, "secret");
     res.json({ token, userID: user._id });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// Endpoint for creating Incube Register
+app.post("/incube-register", async (req, res) => {
+  const {
+    institution,
+    training,
+    duration,
+    businessType,
+    businessDescription,
+    supportRequired,
+    technologyUsed,
+    locationAfterGraduation,
+    spaceRequired,
+  } = req.body;
+  try {
+    const newIncubeRegister = new IncubeRegisterModel({
+      institution,
+      training,
+      duration,
+      businessType,
+      businessDescription,
+      supportRequired,
+      technologyUsed,
+      locationAfterGraduation,
+      spaceRequired,
+    });
+
+    await newIncubeRegister.save(); // Save the newIncubeRegister object to the database
+
+    res.json({ message: "Incube Register Created Successfully!" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
