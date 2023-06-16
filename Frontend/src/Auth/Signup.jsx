@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from "axios"
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -14,8 +16,11 @@ const SignUp = () => {
     phoneNo: ''
   });
 
-  const handleSignUp = (e) => {
+  const navigate = useNavigate();
+
+  const handleSignUp = async (e) => {
     e.preventDefault();
+  
     // Check if all fields are filled
     for (const key in formData) {
       if (formData[key] === '') {
@@ -23,10 +28,44 @@ const SignUp = () => {
         return;
       }
     }
-    // Here you can perform your sign-up logic
-    // For example, you can send the form data to an API endpoint
-    // using fetch or axios
-    console.log('Form submitted:', formData);
+    console.log(formData)
+
+    try {
+      // Make the POST request
+      const response = await axios.post('http://localhost:8080/signup', formData);
+    
+      // Handle the response
+      if (response.status === 200) {
+        // Assuming the server responds with some data
+        console.log(response.data);
+        // Reset the form data
+        setFormData({
+          name: '',
+          CID: '',
+          email: '',
+          gender: '',
+          password: '',
+          confirmPassword: '',
+          role: '',
+          expertise: [],
+          phoneNo: ''
+        });
+        // Show success message or perform any other actions
+        alert('Sign up successful!');
+        // Navigate to the "/User" page
+        navigate('/user');
+      } else {
+        // Handle unexpected response status
+        console.log('Unexpected response status:', response.status);
+        // Show error message or perform any other actions
+        alert('Sign up failed!');
+      }
+    } catch (error) {
+      // Handle the error
+      console.error(error);
+      // Show error message or perform any other actions
+      alert('An error occurred. Please try again later.');
+    }    
   };
 
   const handleInputChange = (e) => {
