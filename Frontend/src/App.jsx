@@ -10,7 +10,6 @@ import StartUp from "./pages/StartUp"
 import Testmonial from "./pages/Testmonial"
 import Signin from "./Auth/Signin"
 import Signup from "./Auth/Signup"
-import Home from "./pages/Dashboard/Home"
 import Event from "./pages/Dashboard/Event"
 import User from "./pages/Dashboard/User"
 import Settings from "./pages/Dashboard/Settings"
@@ -30,7 +29,6 @@ function App() {
               <Route index element={<HomePage />}/>
               <Route path="dashboard" element={<DashboardLayout />}>
                 <Route index element={<DashboardPage />}/>
-                <Route index element={<Home />}/>
                 <Route path="event" element={<Event />}/>
                 <Route path="user" element={<User />}/>
                 <Route path="setting" element={<Settings />}/>
