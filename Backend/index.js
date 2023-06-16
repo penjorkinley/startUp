@@ -23,7 +23,8 @@ db.once("open", () => {
   console.log("Connected to MongoDB");
 });
 
-app.get("/getMentors", async (req, res) => {
+//routes
+app.get("/postMentors", async (req, res) => {
   try {
     const result = await mentorModel.find();
     res.json(result);
@@ -32,6 +33,7 @@ app.get("/getMentors", async (req, res) => {
   }
 });
 
+//extra
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const mentorSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -45,6 +45,6 @@ const mentorSchema = new mongoose.Schema({
   },
 });
 
-const mentorModel = mongoose.model("users", mentorSchema);
+const mentorModel = mongoose.model("users", userSchema);
 
 export default mentorModel;
