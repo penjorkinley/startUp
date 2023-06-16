@@ -1,12 +1,13 @@
+import Header from "../components/Header"
+import Footer from "../components/Footer"
+import { Outlet } from "react-router-dom"
+
 function HomeLayout() {
   return (
     <div>
-        <div className="home">
-            <h1>Landing Page</h1>
-        </div>
-        <div className="dashboard">
-            <h1>Dashboard</h1>
-        </div>
+        <Header />
+        <Outlet />
+        <Footer />
     </div>
   )
 }
