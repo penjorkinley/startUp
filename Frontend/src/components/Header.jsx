@@ -24,7 +24,6 @@ function Header() {
         <button className="text-white bg-green-500 hover:bg-green-600 py-2 px-4 rounded">
           <Link to="/logout">Sign up</Link>
         </button>
-        <button className="text"></button>
       </div>
 </header>
   )

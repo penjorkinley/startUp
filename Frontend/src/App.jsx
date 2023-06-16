@@ -15,6 +15,7 @@ import Event from "./pages/Dashboard/Event"
 import User from "./pages/Dashboard/User"
 import Settings from "./pages/Dashboard/Settings"
 import Help from "./pages/Dashboard/Help"
+import "./index.css"
 
 function App() {
 
