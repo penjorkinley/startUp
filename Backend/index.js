@@ -1,7 +1,6 @@
 import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
-import morgan from "morgan";
 import mentorModel from "./models/mentorRegis.js";
 
 dotenv.config();
