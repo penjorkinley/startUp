@@ -4,7 +4,7 @@ function HomePage() {
   return (
     <div>
       <LandingPage />
-      <AchievementsPage/>
+      <AchievementsPage />
     </div>
   )
 }
