@@ -10,6 +10,11 @@ import StartUp from "./pages/StartUp"
 import Testmonial from "./pages/Testmonial"
 import Login from "./Auth/Login"
 import Logout from "./Auth/logout"
+import Home from "./pages/Dashboard/Home"
+import Event from "./pages/Dashboard/Event"
+import User from "./pages/Dashboard/User"
+import Settings from "./pages/Dashboard/Settings"
+import Help from "./pages/Dashboard/Help"
 
 function App() {
 
@@ -22,6 +27,11 @@ function App() {
             <Route index element={<HomePage />}/>
             <Route path="dashboard" element={<DashboardLayout />}>
               <Route index element={<DashboardPage />}/>
+              <Route index element={<Home />}/>
+              <Route path="event" element={<Event />}/>
+              <Route path="user" element={<User />}/>
+              <Route path="setting" element={<Settings />}/>
+              <Route path="help" element={<Help />}/>
             </Route>
             <Route path="user" element={<DashboardLayout />}>
               <Route index element={<DashboardPage />}/>
