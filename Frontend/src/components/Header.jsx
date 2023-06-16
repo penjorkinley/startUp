@@ -4,7 +4,7 @@ function Header() {
   return (
     <header>
       <nav>
-        <Link to="."></Link>
+        <Link to="/">Home</Link>
         <Link to=""></Link>
         <Link to=""></Link>
         <Link to=""></Link>

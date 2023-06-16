@@ -1,7 +1,9 @@
-
+import LandingPage from "../components/Pages/LandingPage"
 function HomePage() {
   return (
-    <div>HomePage</div>
+    <div>
+      <LandingPage />
+    </div>
   )
 }
 
