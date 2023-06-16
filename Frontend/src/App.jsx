@@ -16,37 +16,39 @@ import User from "./pages/Dashboard/User"
 import Settings from "./pages/Dashboard/Settings"
 import Help from "./pages/Dashboard/Help"
 import "./index.css"
+import { StartContextProvider } from "./Context/StartContext"
 
 function App() {
 
-
   return (
     <div className="App">
-      <Router>
-        <Routes>
-          <Route path="/" element={<HomeLayout />}>
-            <Route index element={<HomePage />}/>
-            <Route path="dashboard" element={<DashboardLayout />}>
-              <Route index element={<DashboardPage />}/>
-              <Route index element={<Home />}/>
-              <Route path="event" element={<Event />}/>
-              <Route path="user" element={<User />}/>
-              <Route path="setting" element={<Settings />}/>
-              <Route path="help" element={<Help />}/>
+      <StartContextProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<HomeLayout />}>
+              <Route index element={<HomePage />}/>
+              <Route path="dashboard" element={<DashboardLayout />}>
+                <Route index element={<DashboardPage />}/>
+                <Route index element={<Home />}/>
+                <Route path="event" element={<Event />}/>
+                <Route path="user" element={<User />}/>
+                <Route path="setting" element={<Settings />}/>
+                <Route path="help" element={<Help />}/>
+              </Route>
+              <Route path="user" element={<DashboardLayout />}>
+                <Route index element={<DashboardPage />}/>
+              </Route>
+              <Route path="about" element={<AboutUs />}/>
+              <Route path="service" element={<Services />}/>
+              <Route path="program" element={<Programs />}/>
+              <Route path="startup" element={<StartUp />}/>
+              <Route path="testimonial" element={<Testmonial />}/>
+              <Route path="login" element={<Login />}/>
+              <Route path="logout" element={<Logout />}/>
             </Route>
-            <Route path="user" element={<DashboardLayout />}>
-              <Route index element={<DashboardPage />}/>
-            </Route>
-            <Route path="about" element={<AboutUs />}/>
-            <Route path="service" element={<Services />}/>
-            <Route path="program" element={<Programs />}/>
-            <Route path="startup" element={<StartUp />}/>
-            <Route path="testimonial" element={<Testmonial />}/>
-            <Route path="login" element={<Login />}/>
-            <Route path="logout" element={<Logout />}/>
-          </Route>
-        </Routes>
-      </Router>
+          </Routes>
+        </Router>
+      </StartContextProvider>
     </div>
   )
 }
