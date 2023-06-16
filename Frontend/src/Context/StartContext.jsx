@@ -1,15 +1,26 @@
-import { createContext } from "react"
+import { createContext, useState } from "react";
 
-export const StartContext = createContext(null)
+export const StartContext = createContext(null);
 
+// eslint-disable-next-line react/prop-types
+export const StartContextProvider = ({ children }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const login = () => {
+    setIsLoggedIn(true);
+  };
 
-export const StartContextProvider = () => {
+  const logout = () => {
+    setIsLoggedIn(false);
+  };
 
+  const contextValue = {
+    isLoggedIn,
+    login,
+    logout,
+  };
 
-
-    const contextValue = {}
   return (
-    <StartContextProvider value={contextValue}></StartContextProvider>
-  )
-}
+    <StartContext.Provider value={contextValue}>{children}</StartContext.Provider>
+  );
+};
