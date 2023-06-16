@@ -1,4 +1,4 @@
-
+import 'tailwindcss/tailwind.css';
 function AchievementsPage() {
   return (
     <div className="stats shadow">
