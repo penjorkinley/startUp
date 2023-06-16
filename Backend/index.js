@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import mentorModel from "./models/UserModel.js";
 import jwt from "jsonwebtoken"
 import UserModel from "./models/UserModel.js";
+import bcrypt from "bcrypt"
 
 dotenv.config();
 
@@ -38,7 +39,6 @@ app.get("/getMentors", async (req, res) => {
 
 // Endpoint for user authentication
 app.post("/login", async (req, res) => {
-  console.log(req.body)
   const { name, password } = req.body;
   try {
     const user = await UserModel.findOne({ name });
@@ -47,7 +47,7 @@ app.post("/login", async (req, res) => {
       return res.json({ message: "User Doesn't Exist!" });
     }
 
-    const isPasswordValid = await user.comparePassword(password);
+    const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
       return res.json({ message: "Username or Password Is Incorrect!" });
