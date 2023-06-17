@@ -29,7 +29,7 @@ function Settings() {
 
   const handleSave = async () => {
     try {
-      await axios.put('http://localhost:8080/achievementup', editedAchievements);
+      await axios.post('http://localhost:8080/achievementup', editedAchievements);
       setAchievements(editedAchievements);
       setEditing(false);
       setSaveMessage('Achievements successfully saved.');
@@ -38,6 +38,7 @@ function Settings() {
       setSaveMessage('Failed to save achievements.');
     }
   };
+  
 
   const handleChange = (event, field) => {
     setEditedAchievements({
