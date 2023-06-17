@@ -18,7 +18,7 @@ function Event() {
         <h2 className="text-3xl font-bold">Event</h2>
         <div>
         <span className="text-gray-500 ml-2 mr-4">Total: {totalEvents}</span>
-          <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+          <button className="bg-yellow-300 hover:bg-blue-600 text-black py-2 px-4 rounded">
             Add Event
           </button>
         </div>
