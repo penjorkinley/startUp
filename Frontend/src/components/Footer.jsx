@@ -4,7 +4,7 @@ import insta from "../assets/insta.svg"
 
 function Footer() {
   return (
-    <div className="flex flex-wrap items-start justify-between p-4 bg-black text-white mt-absolute">
+    <div className="flex flex-wrap items-start justify-between p-4 bg-black text-white mt-8 mt-absolute">
       <div className="social block">
         <div className="ml-2">
           <p className="font-bold text-2xl">Connect</p>
