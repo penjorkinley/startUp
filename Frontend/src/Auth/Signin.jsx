@@ -2,6 +2,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import logo from "../assets/logo.png";
+<<<<<<< HEAD
+
+=======
+>>>>>>> 508182a5b63515837d37f1fc1a3cc8f89c249821
 import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
