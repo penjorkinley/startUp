@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
+import cross from "../assets/cross.svg"
 
 function Header() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -112,6 +113,18 @@ function Header() {
           isMobileMenuOpen ? "block" : "hidden"
         }`}
       >
+        <div className="flex justify-end">
+        <button
+          onClick={toggleMobileMenu}
+          className="p-5"
+        >
+          <img
+            src={cross}
+            alt="Close"
+            className="h-6 w-6"
+          />
+        </button>
+      </div>
         <ul className="flex flex-col space-y-4 p-4">
           <li>
             <Link
@@ -169,14 +182,22 @@ function Header() {
             </Link>
           </li>
           <li>
-            <button className="text-white bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded">
-              <Link to="/signin">Sign In</Link>
-            </button>
+          <button
+            style={{ backgroundColor: "#FFDE59", color: "black" }}
+            className="hover:bg-blue-600 py-2 px-4 rounded"
+            onClick={toggleMobileMenu}
+          >
+            <Link to="/signin">Sign In</Link>
+          </button>
           </li>
           <li>
-            <button className="text-white bg-green-500 hover:bg-green-600 py-2 px-4 rounded">
-              <Link to="/signup">Sign Up</Link>
-            </button>
+          <button
+            style={{ backgroundColor: "white", color: "black" }}
+            className="hover:bg-green-600 py-2 px-4 rounded"
+            onClick={toggleMobileMenu}
+          >
+            <Link to="/signup">Sign Up</Link>
+          </button>
           </li>
         </ul>
       </nav>
