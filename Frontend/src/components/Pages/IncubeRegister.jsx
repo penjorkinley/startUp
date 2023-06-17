@@ -1,17 +1,22 @@
-import { useState } from 'react';
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function IncubeRegister() {
   const [formData, setFormData] = useState({
-    institution: '',
-    training: '',
-    duration: '',
-    businessType: '',
-    businessDescription: '',
-    supportRequired: '',
-    technologyUsed: '',
-    locationAfterGraduation: '',
-    spaceRequired: '',
+    institution: "",
+    training: "",
+    duration: "",
+    businessType: "",
+    businessDescription: "",
+    supportRequired: "",
+    technologyUsed: "",
+    locationAfterGraduation: "",
+    spaceRequired: "",
   });
+
+  const [submissionStatus, setSubmissionStatus] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,7 +28,19 @@ function IncubeRegister() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: Handle form submission
+    // Send the form data to the backend server
+    axios
+      .post("http://localhost:8080/incube-register", formData)
+      .then((response) => {
+        // Handle the response from the backend server
+        alert("Form submitted successfully");
+        navigate("/"); // Replace "/home" with the appropriate URL for your home page
+      })
+      .catch((error) => {
+        // Handle any error that occurred during the form submission
+        alert("An error occurred while submitting the form");
+        console.log("An error occurred while submitting the form:", error);
+      });
   };
 
   const handleCancel = () => {
@@ -32,9 +49,13 @@ function IncubeRegister() {
 
   return (
     <form onSubmit={handleSubmit} className="max-w-xl mx-auto">
-      <h2 className="text-2xl font-bold mb-4">Details about additional qualification/Training program attended</h2>
+      <h2 className="text-2xl font-bold mb-4">
+        Details about additional qualification/Training program attended
+      </h2>
       <div className="mb-4">
-        <label htmlFor="institution" className="block">Name of Institution:</label>
+        <label htmlFor="institution" className="block">
+          Name of Institution:
+        </label>
         <input
           type="text"
           id="institution"
@@ -46,7 +67,9 @@ function IncubeRegister() {
       </div>
 
       <div className="mb-4">
-        <label htmlFor="training" className="block">Training:</label>
+        <label htmlFor="training" className="block">
+          Training:
+        </label>
         <input
           type="text"
           id="training"
@@ -58,7 +81,9 @@ function IncubeRegister() {
       </div>
 
       <div className="mb-4">
-        <label htmlFor="duration" className="block">Duration:</label>
+        <label htmlFor="duration" className="block">
+          Duration:
+        </label>
         <input
           type="text"
           id="duration"
@@ -71,14 +96,16 @@ function IncubeRegister() {
 
       <h2 className="text-2xl font-bold mb-4">Proposed Business Information</h2>
       <div className="mb-4">
-        <label htmlFor="businessType" className="block">Business Type:</label>
+        <label htmlFor="businessType" className="block">
+          Business Type:
+        </label>
         <div>
           <input
             type="radio"
             id="existingBusiness"
             name="businessType"
             value="Existing Business"
-            checked={formData.businessType === 'Existing Business'}
+            checked={formData.businessType === "Existing Business"}
             onChange={handleChange}
             className="mr-2"
           />
@@ -90,7 +117,7 @@ function IncubeRegister() {
             id="newBusiness"
             name="businessType"
             value="New Business"
-            checked={formData.businessType === 'New Business'}
+            checked={formData.businessType === "New Business"}
             onChange={handleChange}
             className="mr-2"
           />
@@ -99,7 +126,9 @@ function IncubeRegister() {
       </div>
 
       <div className="mb-4">
-        <label htmlFor="businessDescription" className="block">Brief description of Business Idea:</label>
+        <label htmlFor="businessDescription" className="block">
+          Brief description of Business Idea:
+        </label>
         <textarea
           id="businessDescription"
           name="businessDescription"
@@ -110,7 +139,9 @@ function IncubeRegister() {
       </div>
 
       <div className="mb-4">
-        <label htmlFor="supportRequired" className="block">Support required from business Incubation center:</label>
+        <label htmlFor="supportRequired" className="block">
+          Support required from business Incubation center:
+        </label>
         <textarea
           id="supportRequired"
           name="supportRequired"
@@ -121,7 +152,9 @@ function IncubeRegister() {
       </div>
 
       <div className="mb-4">
-        <label htmlFor="technologyUsed" className="block">Technology to use:</label>
+        <label htmlFor="technologyUsed" className="block">
+          Technology to use:
+        </label>
         <textarea
           id="technologyUsed"
           name="technologyUsed"
@@ -132,7 +165,9 @@ function IncubeRegister() {
       </div>
 
       <div className="mb-4">
-        <label htmlFor="locationAfterGraduation" className="block">Business location after graduation:</label>
+        <label htmlFor="locationAfterGraduation" className="block">
+          Business location after graduation:
+        </label>
         <textarea
           id="locationAfterGraduation"
           name="locationAfterGraduation"
@@ -143,7 +178,9 @@ function IncubeRegister() {
       </div>
 
       <div className="mb-4">
-        <label htmlFor="spaceRequired" className="block">Space Required (sq.ft):</label>
+        <label htmlFor="spaceRequired" className="block">
+          Space Required (sq.ft):
+        </label>
         <input
           type="text"
           id="spaceRequired"
@@ -156,10 +193,27 @@ function IncubeRegister() {
       </div>
 
       <div className="flex justify-between">
-        <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Preview</button>
-        <button type="submit" className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Submit</button>
-        <button type="button" onClick={handleCancel} className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">Cancel</button>
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+        >
+          Preview
+        </button>
+        <button
+          type="submit"
+          className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
+        >
+          Submit
+        </button>
+        <button
+          type="button"
+          onClick={handleCancel}
+          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
+        >
+          Cancel
+        </button>
       </div>
+      {submissionStatus && <p>{submissionStatus}</p>}
     </form>
   );
 }
