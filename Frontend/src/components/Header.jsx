@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import logo from "../assets/logo.png";
+
 
 function Header() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -32,7 +34,7 @@ function Header() {
               exact
               to="/"
               activeClassName="text-blue-500"
-              className="text-gray-700 hover:text-gray-900"
+              className="text-gray-700 hover:text-yellow-300"
             >
               Home
             </Link>
@@ -41,7 +43,7 @@ function Header() {
             <Link
               to="/about"
               activeClassName="text-blue-500"
-              className="text-gray-700 hover:text-gray-900"
+              className="text-gray-700 hover:text-yellow-300"
             >
               About Us
             </Link>
@@ -50,7 +52,7 @@ function Header() {
             <Link
               to="/service"
               activeClassName="text-blue-500"
-              className="text-gray-700 hover:text-gray-900"
+              className="text-gray-700 hover:text-yellow-300"
             >
               Services
             </Link>
@@ -59,7 +61,7 @@ function Header() {
             <Link
               to="/program"
               activeClassName="text-blue-500"
-              className="text-gray-700 hover:text-gray-900"
+              className="text-gray-700 hover:text-yellow-300"
             >
               Programs
             </Link>
@@ -68,7 +70,7 @@ function Header() {
             <Link
               to="/startup"
               activeClassName="text-blue-500"
-              className="text-gray-700 hover:text-gray-900"
+              className="text-gray-700 hover:text-yellow-300"
             >
               Startups
             </Link>
@@ -77,7 +79,7 @@ function Header() {
             <Link
               to="/testimonial"
               activeClassName="text-blue-500"
-              className="text-gray-700 hover:text-gray-900"
+              className="text-gray-700 hover:text-yellow-300"
             >
               Testimonials
             </Link>
@@ -98,6 +100,7 @@ function Header() {
   };
   
 
+<<<<<<< HEAD
 const renderMobileMenu = () => {
   return (
     <nav
@@ -175,13 +178,84 @@ const renderMobileMenu = () => {
     </nav>
   );
 };
+=======
+  const renderMobileMenu = () => {
+    return (
+      <nav
+        className={`fixed right-0 top-0 h-screen w-64 bg-[#faf9f6] z-50 md:hidden ${
+          isMobileMenuOpen ? 'block' : 'hidden'
+        }`}
+      >
+        <ul className="flex flex-col space-y-4 p-4">
+          <li>
+            <Link
+              exact
+              to="/"
+              activeClassName="text-blue-500"
+              className="text-gray-700 hover:text-yellow-300"
+            >
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/about"
+              activeClassName="text-blue-500"
+              className="text-gray-700 hover:text-yellow-300"
+            >
+              About Us
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/service"
+              activeClassName="text-blue-500"
+              className="text-gray-700 hover:text-yellow-300"
+            >
+              Services
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/program"
+              activeClassName="text-blue-500"
+              className="text-gray-700 hover:text-yellow-300"
+            >
+              Programs
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/startup"
+              activeClassName="text-blue-500"
+              className="text-gray-700 hover:text-yellow-300"
+            >
+              Startups
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/testimonial"
+              activeClassName="text-blue-500"
+              className="text-gray-700 hover:text-yellow-300"
+            >
+              Testimonials
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    );
+  };
+>>>>>>> dbc47f2db2d082d8e90c2604941c1d4ce839ebb9
 
   return (
     <header className="flex items-center justify-between p-4">
       <div className="Logo">
-        <Link exact to="/" className="text-lg font-bold">
+      <img src={logo} alt="Registration" className="mx-auto mb-4" style={{ width: '70px', height: 'auto' }} />
+
+        {/* <Link exact to="/" className="text-lg font-bold">
           LOGO
-        </Link>
+        </Link> */}
       </div>
 
       {/* Hamburger Menu Icon */}
@@ -217,6 +291,21 @@ const renderMobileMenu = () => {
 
       {/* Navigation Menu */}
       {isMobileView ? renderMobileMenu() : renderDesktopMenu()}
+<<<<<<< HEAD
+=======
+
+      {/* Sign In and Sign Up Buttons */}
+      <div>
+        <button style={{ backgroundColor: '#FFDE59', color: 'black' }} className="hover:bg-blue-600 py-2 px-4 rounded">
+          <Link to="/signin">Log In</Link>
+        </button>
+
+        <button style={{ backgroundColor: 'white', color: 'black' }} className="hover:bg-green-600 py-2 px-4 rounded">
+          <Link to="/signup">Sign up</Link>
+        </button>
+
+      </div>
+>>>>>>> dbc47f2db2d082d8e90c2604941c1d4ce839ebb9
     </header>
   );
 }
