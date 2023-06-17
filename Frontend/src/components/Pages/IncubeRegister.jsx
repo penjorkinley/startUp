@@ -48,7 +48,7 @@ function IncubeRegister() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-xl mx-auto">
+    <form onSubmit={handleSubmit} className="max-w-xl mx-auto pb-12">
       <h2 className="text-2xl font-bold mb-4">
         Details about additional qualification/Training program attended
       </h2>
