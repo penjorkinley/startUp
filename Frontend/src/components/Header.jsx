@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
-
 
 function Header() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -17,11 +16,11 @@ function Header() {
       setMobileMenuOpen(false);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     handleResize(); // Set initial view on component mount
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -85,105 +84,32 @@ function Header() {
             </Link>
           </li>
         </ul>
-  
+
         {/* Sign In and Sign Up Buttons */}
         <div>
-          <button className="text-white bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded">
-            <Link to="/signin">Sign In</Link>
+          <button
+            style={{ backgroundColor: "#FFDE59", color: "black" }}
+            className="hover:bg-blue-600 py-2 px-4 rounded"
+          >
+            <Link to="/signin">Log In</Link>
           </button>
-          <button className="text-white bg-green-500 hover:bg-green-600 py-2 px-4 rounded">
+
+          <button
+            style={{ backgroundColor: "white", color: "black" }}
+            className="hover:bg-green-600 py-2 px-4 rounded"
+          >
             <Link to="/signup">Sign Up</Link>
           </button>
         </div>
       </nav>
     );
   };
-  
 
-<<<<<<< HEAD
-const renderMobileMenu = () => {
-  return (
-    <nav
-      className={`fixed right-0 top-0 h-screen w-64 bg-blue-200 z-50 md:hidden ${
-        isMobileMenuOpen ? 'block' : 'hidden'
-      }`}
-    >
-      <ul className="flex flex-col space-y-4 p-4">
-        <li>
-          <Link
-            exact
-            to="/"
-            activeClassName="text-blue-500"
-            className="text-gray-700 hover:text-gray-900"
-          >
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/about"
-            activeClassName="text-blue-500"
-            className="text-gray-700 hover:text-gray-900"
-          >
-            About Us
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/service"
-            activeClassName="text-blue-500"
-            className="text-gray-700 hover:text-gray-900"
-          >
-            Services
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/program"
-            activeClassName="text-blue-500"
-            className="text-gray-700 hover:text-gray-900"
-          >
-            Programs
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/startup"
-            activeClassName="text-blue-500"
-            className="text-gray-700 hover:text-gray-900"
-          >
-            Startups
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/testimonial"
-            activeClassName="text-blue-500"
-            className="text-gray-700 hover:text-gray-900"
-          >
-            Testimonials
-          </Link>
-        </li>
-        <li>
-          <button className="text-white bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded">
-            <Link to="/signin">Sign In</Link>
-          </button>
-        </li>
-        <li>
-          <button className="text-white bg-green-500 hover:bg-green-600 py-2 px-4 rounded">
-            <Link to="/signup">Sign Up</Link>
-          </button>
-        </li>
-      </ul>
-    </nav>
-  );
-};
-=======
   const renderMobileMenu = () => {
     return (
       <nav
-        className={`fixed right-0 top-0 h-screen w-64 bg-[#faf9f6] z-50 md:hidden ${
-          isMobileMenuOpen ? 'block' : 'hidden'
+        className={`fixed right-0 top-0 h-screen w-64 bg-blue-200 z-50 md:hidden ${
+          isMobileMenuOpen ? "block" : "hidden"
         }`}
       >
         <ul className="flex flex-col space-y-4 p-4">
@@ -192,7 +118,7 @@ const renderMobileMenu = () => {
               exact
               to="/"
               activeClassName="text-blue-500"
-              className="text-gray-700 hover:text-yellow-300"
+              className="text-gray-700 hover:text-gray-900"
             >
               Home
             </Link>
@@ -201,7 +127,7 @@ const renderMobileMenu = () => {
             <Link
               to="/about"
               activeClassName="text-blue-500"
-              className="text-gray-700 hover:text-yellow-300"
+              className="text-gray-700 hover:text-gray-900"
             >
               About Us
             </Link>
@@ -210,7 +136,7 @@ const renderMobileMenu = () => {
             <Link
               to="/service"
               activeClassName="text-blue-500"
-              className="text-gray-700 hover:text-yellow-300"
+              className="text-gray-700 hover:text-gray-900"
             >
               Services
             </Link>
@@ -219,7 +145,7 @@ const renderMobileMenu = () => {
             <Link
               to="/program"
               activeClassName="text-blue-500"
-              className="text-gray-700 hover:text-yellow-300"
+              className="text-gray-700 hover:text-gray-900"
             >
               Programs
             </Link>
@@ -228,7 +154,7 @@ const renderMobileMenu = () => {
             <Link
               to="/startup"
               activeClassName="text-blue-500"
-              className="text-gray-700 hover:text-yellow-300"
+              className="text-gray-700 hover:text-gray-900"
             >
               Startups
             </Link>
@@ -237,25 +163,35 @@ const renderMobileMenu = () => {
             <Link
               to="/testimonial"
               activeClassName="text-blue-500"
-              className="text-gray-700 hover:text-yellow-300"
+              className="text-gray-700 hover:text-gray-900"
             >
               Testimonials
             </Link>
+          </li>
+          <li>
+            <button className="text-white bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded">
+              <Link to="/signin">Sign In</Link>
+            </button>
+          </li>
+          <li>
+            <button className="text-white bg-green-500 hover:bg-green-600 py-2 px-4 rounded">
+              <Link to="/signup">Sign Up</Link>
+            </button>
           </li>
         </ul>
       </nav>
     );
   };
->>>>>>> dbc47f2db2d082d8e90c2604941c1d4ce839ebb9
 
   return (
     <header className="flex items-center justify-between p-4">
       <div className="Logo">
-      <img src={logo} alt="Registration" className="mx-auto mb-4" style={{ width: '70px', height: 'auto' }} />
-
-        {/* <Link exact to="/" className="text-lg font-bold">
-          LOGO
-        </Link> */}
+        <img
+          src={logo}
+          alt="Registration"
+          className="mx-auto mb-4"
+          style={{ width: "70px", height: "auto" }}
+        />
       </div>
 
       {/* Hamburger Menu Icon */}
@@ -291,21 +227,6 @@ const renderMobileMenu = () => {
 
       {/* Navigation Menu */}
       {isMobileView ? renderMobileMenu() : renderDesktopMenu()}
-<<<<<<< HEAD
-=======
-
-      {/* Sign In and Sign Up Buttons */}
-      <div>
-        <button style={{ backgroundColor: '#FFDE59', color: 'black' }} className="hover:bg-blue-600 py-2 px-4 rounded">
-          <Link to="/signin">Log In</Link>
-        </button>
-
-        <button style={{ backgroundColor: 'white', color: 'black' }} className="hover:bg-green-600 py-2 px-4 rounded">
-          <Link to="/signup">Sign up</Link>
-        </button>
-
-      </div>
->>>>>>> dbc47f2db2d082d8e90c2604941c1d4ce839ebb9
     </header>
   );
 }

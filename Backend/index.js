@@ -8,7 +8,6 @@ import AchievementModel from "./models/Achivements.js";
 import bcrypt from "bcrypt";
 import cors from "cors"; // Import the cors middleware
 
-
 dotenv.config();
 
 const app = express();
@@ -16,7 +15,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(cors()); 
+app.use(cors());
 
 mongoose.connect(
   "mongodb+srv://startup2023:$heerioeD16@cluster0.z32x289.mongodb.net/startup?retryWrites=true&w=majority",
@@ -91,7 +90,6 @@ app.post("/login", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
 
 // Endpoint for creating Incube Register
 app.post("/incube-register", async (req, res) => {
