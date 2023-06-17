@@ -18,11 +18,7 @@ function Services() {
   };
 
   return (
-<<<<<<< HEAD
-    <div className="grid grid-cols-3 gap-4 p-10">
-=======
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-8">
->>>>>>> ee4f3e9fd374381d7aaa8079cfa5d44680ab62cf
       {services.map((service) => (
         <div
           key={service.id}
