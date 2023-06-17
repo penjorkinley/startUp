@@ -1,11 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+<<<<<<< HEAD
 import logo from "../assets/logo.png";
 
+=======
+import { useNavigate } from "react-router-dom";
+>>>>>>> 634f4c585a5869643c60cb3f77a78e3cbdbfe78b
 
 const Signin = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,9 +22,14 @@ const Signin = () => {
         formData
       );
       // Assuming the backend sends a response with a token and userID
-      const { token, userID } = response.data;
+      const { token, userID, role } = response.data;
       // You can save the token and userID in your frontend state or localStorage for authentication purposes
-      console.log("Login Successful:", token, userID);
+      console.log("Login Successful:", token, userID, role);
+      if (role === "Admin") {
+        navigate("/dashboard")
+      } else {
+        navigate("/")
+      }
     } catch (error) {
       console.error("Login Failed:", error);
     }

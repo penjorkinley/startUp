@@ -84,12 +84,14 @@ app.post("/login", async (req, res) => {
     }
 
     const token = jwt.sign({ id: user._id }, "secret");
-    res.json({ token, userID: user._id });
+    const { _id, role } = user; // Extract the _id and role from the user object
+    res.json({ token, userID: _id, role }); // Add the role to the response
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
 
 // Endpoint for creating Incube Register
 app.post("/incube-register", async (req, res) => {
