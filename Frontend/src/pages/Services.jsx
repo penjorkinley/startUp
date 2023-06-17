@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Services() {
   const services = [
-    { id: 1, name: 'Service 1', image: 'service1.jpg' },
-    { id: 2, name: 'Service 2', image: 'service2.jpg' },
-    { id: 3, name: 'Service 3', image: 'service3.jpg' },
-    { id: 4, name: 'Service 4', image: 'service4.jpg' },
-    { id: 5, name: 'Service 5', image: 'service5.jpg' },
-    { id: 6, name: 'Service 6', image: 'service6.jpg' },
+    { id: 1, name: "Service 1", image: "" },
+    { id: 2, name: "Service 2", image: "service2.jpg" },
+    { id: 3, name: "Service 3", image: "service3.jpg" },
+    { id: 4, name: "Service 4", image: "service4.jpg" },
+    { id: 5, name: "Service 5", image: "service5.jpg" },
+    { id: 6, name: "Service 6", image: "service6.jpg" },
   ];
 
   const [hoveredId, setHoveredId] = useState(null);
@@ -18,24 +18,20 @@ function Services() {
   };
 
   return (
-    <div className="grid grid-cols-3 gap-4 p-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-8">
       {services.map((service) => (
         <div
           key={service.id}
           className="relative overflow-hidden bg-white rounded-lg shadow"
           onMouseEnter={() => handleCardHover(service.id)}
           onMouseLeave={() => handleCardHover(service.id)}
-          style={{ maxWidth: '440px', minWidth: '220px' }}
         >
-          <div
-            className="overflow-hidden"
-            style={{ paddingBottom: '56.25%' }}
-          >
+          <div className="overflow-hidden" style={{ paddingBottom: "56.25%" }}>
             <img
               src={service.image}
               alt={service.name}
               className={`object-cover object-center w-full h-full ${
-                hoveredId === service.id ? 'opacity-75' : 'opacity-100'
+                hoveredId === service.id ? "opacity-75" : "opacity-100"
               }`}
             />
           </div>
