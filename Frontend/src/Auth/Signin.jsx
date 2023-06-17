@@ -1,12 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-<<<<<<< HEAD
 import logo from "../assets/logo.png";
-
-=======
 import { useNavigate } from "react-router-dom";
->>>>>>> 634f4c585a5869643c60cb3f77a78e3cbdbfe78b
 
 // eslint-disable-next-line react/prop-types
 const Signin = () => {
