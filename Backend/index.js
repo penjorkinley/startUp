@@ -4,10 +4,9 @@ import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import UserModel from "./models/UserModel.js";
 import IncubeRegisterModel from "./models/IncubateModel.js";
-
+import AchievementModel from "./models/Achivements.js";
 import bcrypt from "bcrypt";
 import cors from "cors"; // Import the cors middleware
-
 
 dotenv.config();
 
@@ -16,7 +15,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(cors()); 
+app.use(cors());
 
 mongoose.connect(
   "mongodb+srv://startup2023:$heerioeD16@cluster0.z32x289.mongodb.net/startup?retryWrites=true&w=majority",
@@ -92,7 +91,6 @@ app.post("/login", async (req, res) => {
   }
 });
 
-
 // Endpoint for creating Incube Register
 app.post("/incube-register", async (req, res) => {
   const {
@@ -125,6 +123,51 @@ app.post("/incube-register", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+//Achievements Endpoint get
+app.get('/achievements', async (req, res) => {
+  try {
+    // Retrieve the values from the AchievementModel
+    const achievements = await AchievementModel.findOne();
+
+    if (!achievements) {
+      return res.status(404).json({ error: 'Achievement data not found' });
+    }
+
+    res.json(achievements);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Update the achievements
+app.post('/achievementup', async (req, res) => {
+  try {
+    const { aecGraduates, becGraduates, totGraduates, events, incubatees, startups } = req.body;
+
+    // Find the AchievementModel document
+    const achievements = await AchievementModel.findOne();
+
+    if (!achievements) {
+      return res.status(404).json({ error: 'Achievement data not found' });
+    }
+
+    // Update the values
+    achievements.aecGraduates = aecGraduates;
+    achievements.becGraduates = becGraduates;
+    achievements.totGraduates = totGraduates;
+    achievements.events = events;
+    achievements.incubatees = incubatees;
+    achievements.startups = startups;
+
+    // Save the updated document
+    await achievements.save();
+
+    res.json(achievements);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
