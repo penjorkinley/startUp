@@ -18,7 +18,7 @@ function Services() {
   };
 
   return (
-    <div className="grid grid-cols-3 gap-4 p-4">
+    <div className="grid grid-cols-3 gap-4 p-10">
       {services.map((service) => (
         <div
           key={service.id}

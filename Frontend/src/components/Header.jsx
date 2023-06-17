@@ -184,7 +184,7 @@ function Header() {
   };
 
   return (
-    <header className=" bg-white flex items-center justify-between p-4 sticky top-0 z-10 shadow-md ">
+    <header className=" bg-white flex items-center justify-between p-4 sticky mb-4 top-0 z-10 shadow-md ">
       <div className="Logo">
         <img
           src={logo}
