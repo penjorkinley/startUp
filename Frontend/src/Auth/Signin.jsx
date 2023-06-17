@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+// eslint-disable-next-line react/prop-types
 const Signin = () => {
+
   const [formData, setFormData] = useState({ email: "", password: "" });
 
   const navigate = useNavigate();

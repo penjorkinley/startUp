@@ -17,44 +17,38 @@ import Help from "./pages/Dashboard/Help"
 import IncubeRegister from "./components/Pages/IncubeRegister"
 import "./index.css"
 import { StartContextProvider } from "./Context/StartContext"
-import { useState } from "react"
 
 function App() {
 
-  const [ islogged, setIsLogged ] = useState(false)
-  
-  
   return (
     <div className="App">
       <StartContextProvider>
         <Router>
           <Routes>
+            <Route path="dashboard" element={<DashboardLayout />}>
+              <Route index element={<DashboardPage />} />
+              <Route path="event" element={<Event />} />
+              <Route path="user" element={<User />} />
+              <Route path="setting" element={<Settings />} />
+              <Route path="help" element={<Help />} />
+            </Route>
             <Route path="/" element={<HomeLayout />}>
-              <Route index element={<HomePage />}/>
-              <Route path="dashboard" element={<DashboardLayout />}>
-                <Route index element={<DashboardPage />}/>
-                <Route path="event" element={<Event />}/>
-                <Route path="user" element={<User />}/>
-                <Route path="setting" element={<Settings />}/>
-                <Route path="help" element={<Help />}/>
-              </Route>
-              <Route path="user" element={<DashboardLayout />}>
-                <Route index element={<DashboardPage />}/>
-              </Route>
-              <Route path="about" element={<AboutUs />}/>
-              <Route path="service" element={<Services />}/>
-              <Route path="/incube" element={<IncubeRegister />}/>
-              <Route path="program" element={<Programs />}/>
-              <Route path="startup" element={<StartUp />}/>
-              <Route path="testimonial" element={<Testmonial />}/>
+              <Route index element={<HomePage />} />
+              <Route path="about" element={<AboutUs />} />
+              <Route path="service" element={<Services />} />
+              <Route path="/incube" element={<IncubeRegister />} />
+              <Route path="program" element={<Programs />} />
+              <Route path="startup" element={<StartUp />} />
+              <Route path="testimonial" element={<Testmonial />} />
               <Route path="signin" element={<Signin />}/>
-              <Route path="signup" element={<Signup />}/>
+              <Route path="signup" element={<Signup />} />
             </Route>
           </Routes>
         </Router>
       </StartContextProvider>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
+
