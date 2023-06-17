@@ -33,7 +33,7 @@ function Header() {
               exact
               to="/"
               activeClassName="text-blue-500"
-              className="text-gray-700 hover:text-yellow-300"
+              className="text-gray-700 hover:text-yellow-300 font-bold text-md"
             >
               Home
             </Link>
@@ -42,7 +42,7 @@ function Header() {
             <Link
               to="/about"
               activeClassName="text-blue-500"
-              className="text-gray-700 hover:text-yellow-300"
+              className="text-gray-700 hover:text-yellow-300 font-bold text-md"
             >
               About Us
             </Link>
@@ -51,7 +51,7 @@ function Header() {
             <Link
               to="/service"
               activeClassName="text-blue-500"
-              className="text-gray-700 hover:text-yellow-300"
+              className="text-gray-700 hover:text-yellow-300 font-bold text-md"
             >
               Services
             </Link>
@@ -60,7 +60,7 @@ function Header() {
             <Link
               to="/program"
               activeClassName="text-blue-500"
-              className="text-gray-700 hover:text-yellow-300"
+              className="text-gray-700 hover:text-yellow-300 font-bold text-md"
             >
               Programs
             </Link>
@@ -69,7 +69,7 @@ function Header() {
             <Link
               to="/startup"
               activeClassName="text-blue-500"
-              className="text-gray-700 hover:text-yellow-300"
+              className="text-gray-700 hover:text-yellow-300 font-bold text-md"
             >
               Startups
             </Link>
@@ -78,7 +78,7 @@ function Header() {
             <Link
               to="/testimonial"
               activeClassName="text-blue-500"
-              className="text-gray-700 hover:text-yellow-300"
+              className="text-gray-700 hover:text-yellow-300 font-bold text-md"
             >
               Testimonials
             </Link>
@@ -184,7 +184,7 @@ function Header() {
   };
 
   return (
-    <header className="flex items-center justify-between p-4">
+    <header className=" bg-white flex items-center justify-between p-4 sticky top-0 z-10 shadow-md ">
       <div className="Logo">
         <img
           src={logo}
