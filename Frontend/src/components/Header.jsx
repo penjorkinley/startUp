@@ -194,7 +194,7 @@ function Header() {
           <button
             style={{ backgroundColor: "white", color: "black" }}
             className="hover:bg-green-600 py-2 px-4 rounded"
-            onClick={toggleMobileMenu}
+            
           >
             <Link to="/signup">Sign Up</Link>
           </button>
@@ -205,7 +205,7 @@ function Header() {
   };
 
   return (
-    <header className=" bg-white flex items-center justify-between p-4 sticky mb-4 top-0 z-10 shadow-md ">
+    <header className=" bg-white flex items-center justify-between p-4 sticky mb-4 top-0 z-10 shadow-md  ">
       <div className="Logo">
         <img
           src={logo}
