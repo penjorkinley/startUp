@@ -56,7 +56,8 @@ const SignUp = () => {
         // Show success message or perform any other actions
         alert("Sign up successful!");
         // Navigate to the "/User" page
-        navigate("/user");
+        
+        navigate("/");
       } else {
         // Handle unexpected response status
         console.log("Unexpected response status:", response.status);
