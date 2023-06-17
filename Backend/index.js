@@ -1,31 +1,134 @@
-//import modules
-import express from "express"
-import mongoose from "mongoose"
-import cors from "cors"
-import dontev from "dotenv"
-import morgan from "morgan"
+import dotenv from "dotenv";
+import express from "express";
+import mongoose from "mongoose";
+import jwt from "jsonwebtoken";
+import UserModel from "./models/UserModel.js";
+import IncubeRegisterModel from "./models/IncubateModel.js";
 
-//app
-const app = express()
+import bcrypt from "bcrypt";
+import cors from "cors"; // Import the cors middleware
 
-//db
-dontev.config()
-mongoose
-.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-.then(() => console.log("DB Connected"))
-.catch((err) => console.log("DB Connection Error", err))
 
-//middleware
-app.use(morgan("dev"))
-app.use(cors({ orgin: true, crendentials: true }))
+dotenv.config();
 
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+app.use(cors()); 
+
+mongoose.connect(
+  "mongodb+srv://startup2023:$heerioeD16@cluster0.z32x289.mongodb.net/startup?retryWrites=true&w=majority",
+  { useNewUrlParser: true, useUnifiedTopology: true }
+);
+
+const db = mongoose.connection;
+
+db.on("error", (error) => {
+  console.error("MongoDB connection error:", error);
+});
+
+db.once("open", () => {
+  console.log("Connected to MongoDB");
+});
 //routes
 
-//port
-const port = process.env.PORT || 8080
+// Endpoint for user sign-up
+app.post("/signup", async (req, res) => {
+  const { name, CID, email, gender, password, role, expertise, phoneNo } =
+    req.body;
+  try {
+    const user = await UserModel.findOne({ email });
 
-//listener
-const server = app.listen(port, () => console.log("Server is running"))
+    if (user) {
+      return res.json({ message: "User Already Exists!" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = new UserModel({
+      name,
+      CID,
+      email,
+      gender,
+      password: hashedPassword,
+      role,
+      expertise,
+      phoneNo,
+    });
+    console.log(newUser);
+    await newUser.save(); // Save the newUser object to the database
+
+    res.json({ message: "User Created Successfully!" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// Endpoint for user authentication
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await UserModel.findOne({ email });
+
+    if (!user) {
+      return res.json({ message: "User Doesn't Exist!" });
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      return res.json({ message: "Username or Password Is Incorrect!" });
+    }
+
+    const token = jwt.sign({ id: user._id }, "secret");
+    res.json({ token, userID: user._id });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// Endpoint for creating Incube Register
+app.post("/incube-register", async (req, res) => {
+  const {
+    institution,
+    training,
+    duration,
+    businessType,
+    businessDescription,
+    supportRequired,
+    technologyUsed,
+    locationAfterGraduation,
+    spaceRequired,
+  } = req.body;
+  try {
+    const newIncubeRegister = new IncubeRegisterModel({
+      institution,
+      training,
+      duration,
+      businessType,
+      businessDescription,
+      supportRequired,
+      technologyUsed,
+      locationAfterGraduation,
+      spaceRequired,
+    });
+
+    await newIncubeRegister.save(); // Save the newIncubeRegister object to the database
+
+    res.json({ message: "Incube Register Created Successfully!" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+//Server
+const port = process.env.PORT || 5000;
+
+app.listen(port, () => {
+  console.log("Server is running on port " + port);
+});

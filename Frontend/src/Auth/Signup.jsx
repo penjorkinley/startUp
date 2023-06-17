@@ -1,55 +1,97 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    CID: '',
-    email: '',
-    gender: '',
-    password: '',
-    confirmPassword: '',
-    role: '',
+    name: "",
+    CID: "",
+    email: "",
+    gender: "",
+    password: "",
+    confirmPassword: "",
+    role: "",
     expertise: [],
-    phoneNo: ''
+    phoneNo: "",
   });
 
-  const handleSignUp = (e) => {
+  const navigate = useNavigate();
+
+  const handleSignUp = async (e) => {
     e.preventDefault();
+
     // Check if all fields are filled
     for (const key in formData) {
-      if (formData[key] === '') {
-        alert('Please fill out all fields!');
+      if (formData[key] === "") {
+        alert("Please fill out all fields!");
         return;
       }
     }
-    // Here you can perform your sign-up logic
-    // For example, you can send the form data to an API endpoint
-    // using fetch or axios
-    console.log('Form submitted:', formData);
+    console.log(formData);
+
+    try {
+      // Make the POST request
+      const response = await axios.post(
+        "http://localhost:8080/signup",
+        formData
+      );
+
+      // Handle the response
+      if (response.status === 200) {
+        // Assuming the server responds with some data
+        console.log(response.data);
+        // Reset the form data
+        setFormData({
+          name: "",
+          CID: "",
+          email: "",
+          gender: "",
+          password: "",
+          confirmPassword: "",
+          role: "",
+          expertise: [],
+          phoneNo: "",
+        });
+        // Show success message or perform any other actions
+        alert("Sign up successful!");
+        // Navigate to the "/User" page
+        navigate("/user");
+      } else {
+        // Handle unexpected response status
+        console.log("Unexpected response status:", response.status);
+        // Show error message or perform any other actions
+        alert("Sign up failed!");
+      }
+    } catch (error) {
+      // Handle the error
+      console.error(error);
+      // Show error message or perform any other actions
+      alert("An error occurred. Please try again later.");
+    }
   };
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    if (type === 'checkbox') {
+    if (type === "checkbox") {
       // Update expertise array based on checkbox selection
       setFormData((prevState) => {
         if (checked) {
           return {
             ...prevState,
-            expertise: [...prevState.expertise, value]
+            expertise: [...prevState.expertise, value],
           };
         } else {
           return {
             ...prevState,
-            expertise: prevState.expertise.filter((item) => item !== value)
+            expertise: prevState.expertise.filter((item) => item !== value),
           };
         }
       });
     } else {
       setFormData((prevState) => ({
         ...prevState,
-        [name]: value
+        [name]: value,
       }));
     }
   };
@@ -135,7 +177,7 @@ const SignUp = () => {
             <option value="Mentee">Mentee</option>
           </select>
         </div>
-        {formData.role === 'Mentor' && (
+        {formData.role === "Mentor" && (
           <div>
             <div className="flex mb-2">
               <label className="w-1/4 flex-shrink-0">Expertise:</label>
@@ -145,7 +187,7 @@ const SignUp = () => {
                     type="checkbox"
                     name="expertise"
                     value="Project Management"
-                    checked={formData.expertise.includes('Project Management')}
+                    checked={formData.expertise.includes("Project Management")}
                     onChange={handleInputChange}
                   />
                   Project Management
@@ -155,7 +197,7 @@ const SignUp = () => {
                     type="checkbox"
                     name="expertise"
                     value="Business Analyst"
-                    checked={formData.expertise.includes('Business Analyst')}
+                    checked={formData.expertise.includes("Business Analyst")}
                     onChange={handleInputChange}
                   />
                   Business Analyst
@@ -165,7 +207,7 @@ const SignUp = () => {
                     type="checkbox"
                     name="expertise"
                     value="Database"
-                    checked={formData.expertise.includes('Database')}
+                    checked={formData.expertise.includes("Database")}
                     onChange={handleInputChange}
                   />
                   Database
@@ -175,7 +217,7 @@ const SignUp = () => {
                     type="checkbox"
                     name="expertise"
                     value="Interface Design"
-                    checked={formData.expertise.includes('Interface Design')}
+                    checked={formData.expertise.includes("Interface Design")}
                     onChange={handleInputChange}
                   />
                   Interface Design
@@ -185,7 +227,7 @@ const SignUp = () => {
                     type="checkbox"
                     name="expertise"
                     value="Backend Developer"
-                    checked={formData.expertise.includes('Backend Developer')}
+                    checked={formData.expertise.includes("Backend Developer")}
                     onChange={handleInputChange}
                   />
                   Backend Developer
@@ -195,7 +237,9 @@ const SignUp = () => {
                     type="checkbox"
                     name="expertise"
                     value="Full Stack Developer"
-                    checked={formData.expertise.includes('Full Stack Developer')}
+                    checked={formData.expertise.includes(
+                      "Full Stack Developer"
+                    )}
                     onChange={handleInputChange}
                   />
                   Full Stack Developer
@@ -222,7 +266,7 @@ const SignUp = () => {
         </button>
       </form>
       <p className="mt-4 text-center">
-        Already have an account?{' '}
+        Already have an account?{" "}
         <Link to="/signin" className="text-blue-500 hover:text-blue-700">
           Sign in
         </Link>
@@ -231,4 +275,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp
+export default SignUp;
