@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import logo from "../assets/logo.png";
+
 
 const Signin = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -32,7 +34,10 @@ const Signin = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <div className="w-full max-w-md">
+
+      <div className="w-full  max-w-md mx-auto p-4 bg-[#faf9f6] rounded shadow-lg">
+      <img src={logo} alt="Registration" className="mx-auto mb-4" style={{ width: '150px', height: 'auto' }} />
+
         <h2 className="text-4xl font-bold mb-4 text-center">Log In</h2>
         <form
           onSubmit={handleSubmit}
@@ -71,7 +76,7 @@ const Signin = () => {
           </div>
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md w-full"
+            className="bg-yellow-300 text-black font-medium py-2 px-4 rounded-md w-full"
           >
             Login
           </button>
