@@ -143,7 +143,7 @@ app.get('/achievements', async (req, res) => {
 });
 
 // Update the achievements
-app.put('/achievementup', async (req, res) => {
+app.post('/achievementup', async (req, res) => {
   try {
     const { aecGraduates, becGraduates, totGraduates, events, incubatees, startups } = req.body;
 
