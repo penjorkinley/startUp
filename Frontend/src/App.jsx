@@ -17,9 +17,13 @@ import Help from "./pages/Dashboard/Help"
 import IncubeRegister from "./components/Pages/IncubeRegister"
 import "./index.css"
 import { StartContextProvider } from "./Context/StartContext"
+import { useState } from "react"
 
 function App() {
 
+  const [ islogged, setIsLogged ] = useState(false)
+  
+  
   return (
     <div className="App">
       <StartContextProvider>
