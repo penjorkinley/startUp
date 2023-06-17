@@ -1,20 +1,25 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import service1 from "../assets/service1.jpg";
+import service2 from "../assets/service2.jpg";
+import service3 from "../assets/service3.jpg";
+import service4 from "../assets/service4.jpg";
+import service5 from "../assets/service5.jpg";
 
 function Services() {
   const services = [
-    { id: 1, name: "Service 1", image: "" },
-    { id: 2, name: "Service 2", image: "service2.jpg" },
-    { id: 3, name: "Service 3", image: "service3.jpg" },
-    { id: 4, name: "Service 4", image: "service4.jpg" },
-    { id: 5, name: "Service 5", image: "service5.jpg" },
-    { id: 6, name: "Service 6", image: "service6.jpg" },
+    { id: 1, name: "Changzamto SC", image: service1 },
+    { id: 2, name: "Dangdum SC", image: service2 },
+    { id: 3, name: "CST", image: service3 },
+    { id: 4, name: "GCB", image: service4 },
+    { id: 5, name: "CNR", image: service5 },
+    { id: 6, name: "Sherubtse", image: service1 },
   ];
 
   const [hoveredId, setHoveredId] = useState(null);
 
   const handleCardHover = (id) => {
-    setHoveredId(id === hoveredId ? null : id);
+    setHoveredId((prevId) => (prevId === id ? null : id));
   };
 
   return (
@@ -22,21 +27,33 @@ function Services() {
       {services.map((service) => (
         <div
           key={service.id}
-          className="relative overflow-hidden bg-white rounded-lg shadow"
+          className="relative bg-white rounded-lg shadow"
           onMouseEnter={() => handleCardHover(service.id)}
           onMouseLeave={() => handleCardHover(service.id)}
+          style={{
+            maxWidth: "100%",
+            height: "100%",
+            overflow: "hidden",
+          }}
         >
-          <div className="overflow-hidden" style={{ paddingBottom: "56.25%" }}>
+          <div
+            className="overflow-hidden"
+            style={{ paddingBottom: "56.25%", position: "relative" }}
+          >
             <img
               src={service.image}
               alt={service.name}
               className={`object-cover object-center w-full h-full ${
                 hoveredId === service.id ? "opacity-75" : "opacity-100"
               }`}
+              style={{ position: "absolute" }}
             />
           </div>
           {hoveredId === service.id && (
-            <div className="absolute inset-0 flex flex-col justify-center items-center text-center bg-black bg-opacity-75 transition-opacity duration-300">
+            <div
+              className="absolute inset-0 flex flex-col justify-center items-center text-center bg-black bg-opacity-75 transition-opacity duration-300"
+              style={{ width: "100%", height: "100%" }}
+            >
               <h3 className="text-lg font-semibold text-white mb-2">
                 {service.name}
               </h3>
